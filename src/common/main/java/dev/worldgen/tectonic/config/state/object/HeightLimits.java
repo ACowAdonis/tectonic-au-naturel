@@ -21,13 +21,13 @@ public final class HeightLimits {
 
     public HeightLimits(int minY, int maxY) {
         if (minY % 16 != 0) {
-            throw new IllegalArgumentException("min_y should be a multiple of 16!");
+            throw new IllegalArgumentException("min_y must be a multiple of 16, got: " + minY);
         } else if (minY > 0) {
-            throw new IllegalArgumentException("min_y should be greater than 0!");
+            throw new IllegalArgumentException("min_y must be 0 or negative, got: " + minY);
         } else if (maxY % 16 != 0) {
-            throw new IllegalArgumentException("max_y should be a multiple of 16!");
+            throw new IllegalArgumentException("max_y must be a multiple of 16, got: " + maxY);
         } else if (maxY < 256) {
-            throw new IllegalArgumentException("max_y should be less than 256!");
+            throw new IllegalArgumentException("max_y must be at least 256, got: " + maxY);
         }
         this.minY = minY;
         this.maxY = maxY;
