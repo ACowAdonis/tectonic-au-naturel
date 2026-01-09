@@ -18,6 +18,12 @@ public record Invert(DensityFunction input, double min, double max) implements D
     }
 
     public double transform(double d) {
+        // Protect against division by zero and near-zero values
+        // Use epsilon appropriate for Minecraft coordinate scales (typically |d| >> 0.001)
+        // When d crosses zero, clamp to small value to avoid Infinity/NaN propagation
+        if (Math.abs(d) < 1e-10) {
+            return d >= 0 ? 1e10 : -1e10;
+        }
         return 1.0 / d;
     }
 
